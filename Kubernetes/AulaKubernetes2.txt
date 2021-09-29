@@ -1,0 +1,48 @@
+ELEMENTOS DE DEPLOY NO KUBERNETES:
+
+-Pod: o menor objeto do cluster kubernetes, é nele que executa os containeres. Dessa forma os containers compartilham o mesmo IP e File system. Mas não é inteligente e recomendado colocar todos os containers da sua aplicação dentro de um Pod só. Para no momento de escalar a aplicação, escalar os containers individualmente. (padrão side-car).
+	
+	para criar um Pod, é preciso um arquivo .yaml de Manifesto.
+		-meupod.yaml
+			esse file costuma ter os seguintes campos:
+				apiVersion - costuma ser padronizado com o kubectl api-resources
+				kind - tipo de objeto que está sendo criado (Pod, no caso)
+				metadata - onde são inseridos os dados desse objeto, como o nome dele
+				spec - a espeficação do seu objeto (os containeres desse pod, no caso)
+
+
+		após a criação desse file, abrimos o terminal na raiz dele e utilizamos :
+			CRIAR:
+			kubectl create -f meupod.yaml     	(-f de file)
+
+			LISTAR:
+			kubectl get pods
+			
+			DESCREVER:
+			kubectl describe pod meupod
+
+			ENCAMINHAMENTO DE PORTA (COMO UM PUBLISH DO DOCKER)
+			kubectl port-forward pod/meupod 8080:80
+
+			DELETAR:
+			kubectl delete pod meupod
+			
+			APLICAR MUDANCAS:
+			kubectl apply -f meupod.yaml
+
+			SELECIONAR POR LABEL:
+			kubectl get pods -l app=web
+
+
+-ReplicaSet:
+	É a parte que será responsável pela disponibilidade dos pods. Gerenciador dos pods.
+		criamos aqui o segundo pod, com label web.
+		file: meureplicaset.yaml
+		basicamente você escolhe quantas replicas do pod serão criadas.
+
+-Deployment:
+	É a parte responsável pelo versionamento e atualização dos pods, ele automaticamente cria outros pods conforme eles são atualizados e mantem os antigos em standby para facilitar um rollback
+
+	kubectl rollout history deployment meudeployment
+
+	kubectl rollout undo deployment meudeployment

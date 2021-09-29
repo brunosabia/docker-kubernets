@@ -1,0 +1,11 @@
+CRIANDO SEU CLUSTER
+
+crie o arquivo <nomeDoCluster>.yaml
+
+e dentro dele coloque as informações iguais ao exemplo desta pasta.
+
+depois abra o terminal nesta pasta e digite:
+kind create cluster --name meucluster --config cluster.yaml
+
+DELETAR O CLUSTER:
+kind delete cluster --name meucluster

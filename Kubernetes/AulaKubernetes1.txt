@@ -1,0 +1,28 @@
+Kubernetes
+-garante Resiliencia e escalabilidade evitando ainda a sobrecarga para desperdíçar recursos
+
+3 FORMAS DE CRIAR UM CLUSTER KUBERNETES
+-on premisse:
+	criando um cluster kubernetes do zero em maquinas fisicas ou virtuais, te dá controle total sobre o seu	
+	cluster kubernetes, só é recomendado em equipes maiores e experientes. Atualizações do linux e tudo mais.COMPLEXO. Kubeadm, Kubespray, RKE, K3S, MicroK8S
+
+-as a Service:
+	Só iniciar em algum service como o AWS, informando setups e com isso ele cria um cluster kubernetes completo pra vc.Com master, nodes... mas ai todas as atualizacoes são feitas pelo proprio
+	AWS, precisando apenas de um clique ou outro.SERVICO PAGO. AKS da Azure, EKS da AWS , GKE do Google.
+	
+-local:
+	Criar na propria máquina, para testes. RECOMENDADO.Ferramentas para criar seu Cluster Kubernetes local: Minikube, Kind, K3D, MicroK8S,K3S. DICA: NÃO utilize essas ferramentes pra criar seu cluster de produção. Essas são opções apenas pra cluster locais. (tirando as opções que se repetem do On Premisse)
+	
+
+
+PRA CRIAR O CLUSTER LOCAL:
+USAREMOS O KIND(KUBERNETES IN DOCKER)!
+a tecnologia utilizada no Kind é a Kubeadm, que é a mais comum nos ambientes de produção.
+
+choco install kind
+
+
+PRECISAMOS TAMBEM INSTALAR O KUBECTL(o client do kubernetes):
+para interagir com o cluster kubernete. É com ele que vou utilizar os comandos.É utilizado independente do cluster kubernete criado.
+
+choco install kubernetes-cli

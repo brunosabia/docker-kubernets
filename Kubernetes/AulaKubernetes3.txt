@@ -1,0 +1,22 @@
+TIPOS DE SERVICO, que são usados para acessar os seus clusters!
+
+ClusterIP
+Utilizado para comunicações internas do seu cluster, acesso a BD e APIs
+
+NodePort
+Cria um canal externo para se comunicar com o pod rodando dentro do cluster Kubernetes atraves de uma porta aleatória de 30000 ate 32767 nas "vm's" dentro do cluster e pode ser acessado atraves do IP de qualquer uma dessas "vm's"
+
+LoadBalancer
+Utilizado para clusters na nuvem, pois não possuimos os IPs fisicos nem estáticos.
+-----------------------------------
+
+
+DENTRO do file meudeployment.yaml nós criamos  a parte de baixo, o Service. neste service nós precisamos definir o type dele no fim dentre as 3 opções acima.
+
+após adicionar essa parte e colocar pra rodar pelo kubectl apply -f  meudeployment.yaml
+o service será criado.
+Se criado com o type ClusterID, ele ficará com o ip interno para ser acessado só entre pods.
+Se criado com o type NodePort, você poderá ver a porta que está sendo exibida no kubectl get pods e pegar o IP de qualquer um dos containers nesse deploy e jogar no browser com <IP>:<Porta> e acessará o service. lembrando que ele mudará de containers para balancear o load e que essa porta é aleatória.
+
+CRIE UM BINDING DE PORTA pro nodePort dentro do seu cluster.yaml.(em um role de worker)
+
